@@ -493,6 +493,7 @@ void viewPiece(char *board, bool turn, bool *castlingPointer, bool *checkptr){  
            
           
 	    }
+        printGrid(tempBoard, turn);
 
         listToGrid(possibleList, tempBoard);  //converts the possible list to a grid
 

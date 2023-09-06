@@ -12,21 +12,21 @@
 
 
 void getMoves(char *board, bool turn, char piece, int posX, int posY, List possibleList, bool checkptr){
-    piece=toupper(piece);
+    char upperPiece=toupper(piece);
 
-    if(piece == 'P'){          //splits into sub functions
+    if(upperPiece == 'P'){          //splits into sub functions
         pawnMoves(board, turn, posX, posY, possibleList);
 
-    }else if(piece == 'N'){
+    }else if(upperPiece == 'N'){
         knightMoves(board, turn, posX, posY, possibleList);
 
-    }else if(piece == 'B'){
+    }else if(upperPiece == 'B'){
         bishopMoves(board, turn, posX, posY, possibleList);
 
-    }else if(piece == 'R'){
+    }else if(upperPiece == 'R'){
         rookMoves(board, turn, posX, posY, possibleList);
 
-    }else if(piece == 'Q'){
+    }else if(upperPiece == 'Q'){
         bishopMoves(board, turn, posX, posY, possibleList);
         rookMoves(board, turn, posX, posY, possibleList);
 
@@ -34,7 +34,7 @@ void getMoves(char *board, bool turn, char piece, int posX, int posY, List possi
        kingMoves(board, turn, posX, posY, possibleList);
     }
 
-    if(checkptr == 1 && piece != 'K'){ //if in check remove values that keep it still in check
+    if(checkptr == 1 && upperPiece != 'K'){ //if in check remove values that keep it still in check
         movesInCheck(board, turn, piece, posX, posY, possibleList);
     }
 
