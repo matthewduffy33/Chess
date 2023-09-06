@@ -700,14 +700,14 @@ void getHistory(char *board, List historyList, int num, int turnNum, bool currTu
             *(tempBoard+(8*originalY)+originalX) = piece;
 
             if(strcmp(type,"castle")==0){   //moves the rook for castling
-                if(destinationX==1){
+                if(destinationX==2){
                     if(turn==1){
                         *(tempBoard+(8*originalY)+0) = 'R';
                     }else{
                         *(tempBoard+(8*originalY)+0) = 'r';
                     }
                     
-                    *(tempBoard+(8*originalY)+2) = ' ';
+                    *(tempBoard+(8*originalY)+3) = ' ';
                 }else{
                     if(turn==1){
                         *(tempBoard+(8*originalY)+7) = 'R';
@@ -778,11 +778,11 @@ void getHistory(char *board, List historyList, int num, int turnNum, bool currTu
         *(tempBoard+(8*originalY)+originalX) = ' ';
 
         if(strcmp(type,"castle")==0){
-            if(destinationX==1){
+            if(destinationX==2){
                 if(turn==1){
-                    *(tempBoard+(8*originalY)+2) = 'R';
+                    *(tempBoard+(8*originalY)+3) = 'R';
                 }else{
-                    *(tempBoard+(8*originalY)+2) = 'r';
+                    *(tempBoard+(8*originalY)+3) = 'r';
                 }
                     
                 *(tempBoard+(8*originalY)+0) = ' ';
