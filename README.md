@@ -14,18 +14,21 @@ View a Piece: Select a piece and see the moves it can make.
 ![image](https://github.com/matthewduffy33/Chess/assets/105711454/b4acac4b-55bf-4aec-afeb-98bbf03159ef)
 
 
-Castling: Select a side to castle on (if any are possible)
+Castling: Select a side to castle on (if any are possible).
+
 ![image](https://github.com/matthewduffy33/Chess/assets/105711454/d71e8ebb-61e7-4ee2-b8c3-16e283513181)
 
 ![image](https://github.com/matthewduffy33/Chess/assets/105711454/8527a8ac-02ab-4501-92eb-c217540008c3)
 
 ![image](https://github.com/matthewduffy33/Chess/assets/105711454/8c8fb991-438a-4b06-a158-78473bba713e)
 
-History: See a previous move play out again
+History: See a previous move play out again.
+
 ![image](https://github.com/matthewduffy33/Chess/assets/105711454/0460a200-4d34-4550-80e0-0d008a955ef0)
 
 
-Hist List: List of previously made moves
+Hist List: List of previously made moves.
+
 ![image](https://github.com/matthewduffy33/Chess/assets/105711454/a5b6488a-53fd-42e6-920f-16bcd11a17e8)
 
 Resigining is simply forfeiting the win
