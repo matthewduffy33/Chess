@@ -25,7 +25,6 @@ void add(List list, char value[]){
   }
 
   node->next = new;
-
 }
 
 

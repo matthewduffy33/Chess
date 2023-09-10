@@ -659,6 +659,7 @@ START_TEST (moveKingCastleAWhite)
 
     List moveList = malloc(sizeof(List));
     *moveList=NULL;
+
     bool castlingAllowed[4]={true, false, true, true}; 
     bool *castlingPointer= &castlingAllowed[0];
 
@@ -671,7 +672,11 @@ START_TEST (moveKingCastleAWhite)
 
     ck_assert(listCompare(moveList, correctList));
 
+    clearList(moveList);
+    free(moveList);
 
+    clearList(correctList);
+    free(correctList);
 }
 END_TEST
 
@@ -693,6 +698,7 @@ START_TEST (moveKingCastleABlack)
 
     List moveList = malloc(sizeof(List));
     *moveList=NULL;
+
     bool castlingAllowed[4]={true, true, true, false}; 
     bool *castlingPointer= &castlingAllowed[0];
 
@@ -705,6 +711,11 @@ START_TEST (moveKingCastleABlack)
 
     ck_assert(listCompare(moveList, correctList));
 
+    clearList(moveList);
+    free(moveList);
+
+    clearList(correctList);
+    free(correctList);
 
 }
 END_TEST
@@ -738,6 +749,11 @@ START_TEST (moveKingCastleHWhite)
 
     ck_assert(listCompare(moveList, correctList));
 
+    clearList(moveList);
+    free(moveList);
+
+    clearList(correctList);
+    free(correctList);
 
 }
 END_TEST
@@ -772,6 +788,11 @@ START_TEST (moveKingCastleHBlack)
 
     ck_assert(listCompare(moveList, correctList));
 
+    clearList(moveList);
+    free(moveList);
+
+    clearList(correctList);
+    free(correctList);
 
 }
 END_TEST
@@ -793,6 +814,7 @@ START_TEST (moveKingCastleNoneWhite)
 
     List moveList = malloc(sizeof(List));
     *moveList=NULL;
+
     bool castlingAllowed[4]={false, false, true, true}; 
     bool *castlingPointer= &castlingAllowed[0];
 
@@ -800,6 +822,8 @@ START_TEST (moveKingCastleNoneWhite)
 
     ck_assert(isEmpty(moveList));
 
+    clearList(moveList);
+    free(moveList);
 
 }
 END_TEST
@@ -822,6 +846,7 @@ START_TEST (moveKingCastleNoneBlack)
 
     List moveList = malloc(sizeof(List));
     *moveList=NULL;
+
     bool castlingAllowed[4]={true, true, false, false}; 
     bool *castlingPointer= &castlingAllowed[0];
 
@@ -829,6 +854,8 @@ START_TEST (moveKingCastleNoneBlack)
 
     ck_assert(isEmpty(moveList));
 
+    clearList(moveList);
+    free(moveList);
 
 }
 END_TEST
@@ -870,6 +897,11 @@ START_TEST (moveKnightWhite)
 
     ck_assert(listCompare(moveList, correctList));
 
+    clearList(moveList);
+    free(moveList);
+
+    clearList(correctList);
+    free(correctList);
 
 }
 END_TEST
@@ -911,6 +943,11 @@ START_TEST (moveKnightBlack)
 
     ck_assert(listCompare(moveList, correctList));
 
+    clearList(moveList);
+    free(moveList);
+
+    clearList(correctList);
+    free(correctList);
 
 }
 END_TEST
@@ -954,6 +991,11 @@ START_TEST (takeKnightWhite)
 
     ck_assert(listCompare(moveList, correctList));
 
+    clearList(moveList);
+    free(moveList);
+
+    clearList(correctList);
+    free(correctList);
 
 }
 END_TEST
@@ -995,6 +1037,11 @@ START_TEST (takeKnightBlack)
 
     ck_assert(listCompare(moveList, correctList));
 
+    clearList(moveList);
+    free(moveList);
+
+    clearList(correctList);
+    free(correctList);
 
 }
 END_TEST
@@ -1033,6 +1080,11 @@ START_TEST (moveBishopWhite)
 
     ck_assert(listCompare(moveList, correctList));
 
+    clearList(moveList);
+    free(moveList);
+
+    clearList(correctList);
+    free(correctList);
 
 }
 END_TEST
@@ -1069,6 +1121,11 @@ START_TEST (moveBishopBlack)
 
     ck_assert(listCompare(moveList, correctList));
 
+    clearList(moveList);
+    free(moveList);
+
+    clearList(correctList);
+    free(correctList);
 
 }
 END_TEST
@@ -1113,6 +1170,11 @@ START_TEST (takeBishopWhite)
 
     ck_assert(listCompare(moveList, correctList));
 
+    clearList(moveList);
+    free(moveList);
+
+    clearList(correctList);
+    free(correctList);
 
 }
 END_TEST
@@ -1155,6 +1217,11 @@ START_TEST (takeBishopBlack)
 
     ck_assert(listCompare(moveList, correctList));
 
+    clearList(moveList);
+    free(moveList);
+
+    clearList(correctList);
+    free(correctList);
 
 }
 END_TEST
@@ -1194,9 +1261,13 @@ START_TEST (moveRookWhite)
 
     add(correctList, "32");//right
 
-    
-
     ck_assert(listCompare(moveList, correctList));
+
+    clearList(moveList);
+    free(moveList);
+
+    clearList(correctList);
+    free(correctList);
 
 }
 END_TEST
@@ -1234,9 +1305,13 @@ START_TEST (moveRookBlack)
 
     add(correctList, "32");//right
 
-    
-
     ck_assert(listCompare(moveList, correctList));
+
+    clearList(moveList);
+    free(moveList);
+
+    clearList(correctList);
+    free(correctList);
 
 }
 END_TEST
@@ -1280,9 +1355,13 @@ START_TEST (takeRookWhite)
     add(correctList, "32");//right
     add(correctList, "31");
 
-    
-
     ck_assert(listCompare(moveList, correctList));
+
+    clearList(moveList);
+    free(moveList);
+
+    clearList(correctList);
+    free(correctList);
 
 }
 END_TEST
@@ -1324,9 +1403,13 @@ START_TEST (takeRookBlack)
     add(correctList, "32");//right
     add(correctList, "31");
 
-    
-
     ck_assert(listCompare(moveList, correctList));
+
+    clearList(moveList);
+    free(moveList);
+
+    clearList(correctList);
+    free(correctList);
 
 }
 END_TEST
@@ -1358,6 +1441,9 @@ START_TEST (movesInCheckNoMovesWhite)
 
     isEmpty(moveList);
 
+    clearList(moveList);
+    free(moveList);
+
 }
 END_TEST
 
@@ -1384,6 +1470,10 @@ START_TEST (movesInCheckNoMovesBlack)
     movesInCheck(board, 0, 'P', 6, 1, moveList);
 
     isEmpty(moveList);
+
+    clearList(moveList);
+    free(moveList);
+
 
 }
 END_TEST
@@ -1442,6 +1532,10 @@ START_TEST (movesInCheckOneMovesWhite)
       ck_assert(0);
     }
 
+    clearList(moveList);
+    free(moveList);
+
+
 }
 END_TEST
 
@@ -1494,6 +1588,10 @@ START_TEST (movesInCheckOneMovesBlack)
     }else{
       ck_assert(0);
     }
+
+    clearList(moveList);
+    free(moveList);
+
 
 }
 END_TEST
@@ -1562,10 +1660,13 @@ START_TEST (movesInCheckMultiMovesWhite)
     add(correctList, "33");
     add(correctList, "35");
 
-
-
     ck_assert(listCompare(moveList, correctList));
 
+    clearList(moveList);
+    free(moveList);
+
+    clearList(correctList);
+    free(correctList);
 
 }
 END_TEST
@@ -1634,6 +1735,12 @@ START_TEST (movesInCheckMultiMovesBlack)
     
 
     ck_assert(listCompare(moveList, correctList));
+
+    clearList(moveList);
+    free(moveList);
+
+    clearList(correctList);
+    free(correctList);
 
 
 }

@@ -74,13 +74,16 @@ bool selfCheckChecker(char *board, bool turn, int x, int y){  //checks if moves 
     int kingY = pos[1] -'0';
     
     if(x==kingX || y==kingY){   //if piece is in line with the king then check the lines
+        free(pos);
         return lineCheckChecker(board, turn, x, y, kingX, kingY);
     }
 
     if(abs((x-kingX)/(y-kingY))){  //if piece is diagonal with the king then check the lines
+        free(pos);
         return diagonalCheckChecker(board, turn, x, y, kingX, kingY);
     }
 
+    free(pos);
     return false;
 
 }
@@ -101,21 +104,25 @@ bool opponentCheckChecker(char *board, bool turn, char piece, int originalX, int
     
     if(piece=='n' || piece == 'N'){   //special checks for knights and pawns
         if(knightCheckChecker(board, turn, kingX, kingY)){
+            free(pos);
             return true;
         }
     }else if(piece=='p' || piece == 'P'){
         if(pawnCheckChecker(board, turn, kingX, kingY)){
+            free(pos);
             return true;
         }
     }
 
     if(newX==kingX || newY==kingY){   //if piece is in line with the king then check the lines
         if(lineCheckChecker(board, turn, newX, newY, kingX, kingY)){
+            free(pos);
             return true;
         }
 
     }else if(abs((newX-kingX)/(newY-kingY))){   //if piece was diagonal with the king then check the lines
         if(diagonalCheckChecker(board, turn, newX, newY, kingX, kingY)){
+            free(pos);
             return true;
         }
 
@@ -123,16 +130,19 @@ bool opponentCheckChecker(char *board, bool turn, char piece, int originalX, int
 
     if(originalX==kingX || originalY==kingY){ //if piece was in line with the king then check the lines
         if(lineCheckChecker(board, turn, originalX, originalY, kingX, kingY)){
+            free(pos);
             return true;
         }
 
     }else if(abs((originalX-kingX)/(originalY-kingY))){   //if piece was diagonal with the king then check the lines
         if(diagonalCheckChecker(board, turn, originalX, originalY, kingX, kingY)){
+            free(pos);
             return true;
         }
 
     }
 
+    free(pos);
     return false;
 
 }

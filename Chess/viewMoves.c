@@ -58,13 +58,14 @@ void getCastling(char *board, bool turn, char piece, int posX, int posY, List po
 }
 
 void pawnMoves(char *board, bool turn, int posX, int posY, List possibleList){
-    char piece;
-    char *pos = malloc(sizeof(char)*3);
-    memset(pos, '\0', 3);
     
     if(selfCheckChecker(board, turn, posX, posY)){  //checks if moving the piece puts the king in check
         return;
     }
+
+    char piece;
+    char *pos = malloc(sizeof(char)*3);
+    memset(pos, '\0', 3);
 
     if(turn && posY>0){
         piece=*(board+(8*(posY-1))+posX-1);
@@ -165,12 +166,13 @@ void pawnMoves(char *board, bool turn, int posX, int posY, List possibleList){
 
 
 void knightMoves(char *board, bool turn, int posX, int posY, List possibleList){
-    char *pos = malloc(sizeof(char)*3);
-    memset(pos, '\0', 3);
 
     if(selfCheckChecker(board, turn, posX, posY)){   //checks if moving the piece puts the king in check
         return;
     }
+
+    char *pos = malloc(sizeof(char)*3);
+    memset(pos, '\0', 3);
 
     for(int i=-2; i<=2; i=i+4){
         for(int j=-1; j<=1; j=j+2){                                //mathematically loops through the possible moves knights make
@@ -207,13 +209,14 @@ void knightMoves(char *board, bool turn, int posX, int posY, List possibleList){
 }
 
 void bishopMoves(char *board, bool turn, int posX, int posY, List possibleList){
-    char *pos = malloc(sizeof(char)*3);
-    memset(pos, '\0', 3);
-    int j=posY+1;
 
     if(selfCheckChecker(board, turn, posX, posY)){   //checks if moving the piece puts the king in check
         return;
     }
+
+    char *pos = malloc(sizeof(char)*3);
+    memset(pos, '\0', 3);
+    int j=posY+1;
 
     for(int i=posX+1; i <8; i++){        //loops through the bottom right line until another piece is encountered
         char piece = *(board+(8*j)+i);
@@ -310,12 +313,13 @@ void bishopMoves(char *board, bool turn, int posX, int posY, List possibleList){
 
 
 void rookMoves(char *board, bool turn, int posX, int posY, List possibleList){
-    char *pos = malloc(sizeof(char)*3);
-    memset(pos, '\0', 3);
 
     if(selfCheckChecker(board, turn, posX, posY)){   //checks if moving the piece puts the king in check
         return;
     }
+
+    char *pos = malloc(sizeof(char)*3);
+    memset(pos, '\0', 3);
 
     for(int i=posX+1; i <8; i++){            //loops through the right line until another piece is encountered
         char piece = *(board+(8*posY)+i);
@@ -559,6 +563,8 @@ void movesInCheck(char *board, bool turn, char piece, int posX, int posY, List p
         
     }
   }
+
+  free(pos);
 
     
 }
