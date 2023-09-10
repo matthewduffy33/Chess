@@ -72,6 +72,12 @@ START_TEST (movePawnWhite)
 
     ck_assert(listCompare(historyList, correctList));
 
+    clearList(historyList);
+    free(historyList);
+
+    clearList(correctList);
+    free(correctList);
+
 
 
 }
@@ -114,7 +120,11 @@ START_TEST (takePawnWhite)
 
     ck_assert(listCompare(historyList, correctList));
 
+    clearList(historyList);
+    free(historyList);
 
+    clearList(correctList);
+    free(correctList);
 
 }
 END_TEST
@@ -155,6 +165,11 @@ START_TEST (movePawnBlack)
 
     ck_assert(listCompare(historyList, correctList));
 
+    clearList(historyList);
+    free(historyList);
+
+    clearList(correctList);
+    free(correctList);
 }
 END_TEST
 
@@ -195,6 +210,11 @@ START_TEST (takePawnBlack)
 
     ck_assert(listCompare(historyList, correctList));
 
+    clearList(historyList);
+    free(historyList);
+
+    clearList(correctList);
+    free(correctList);
 
 }
 END_TEST
@@ -236,6 +256,12 @@ START_TEST (moveKnightWhite)
 
     ck_assert(listCompare(historyList, correctList));
 
+    clearList(historyList);
+    free(historyList);
+
+    clearList(correctList);
+    free(correctList);
+
 }
 END_TEST
 
@@ -276,6 +302,11 @@ START_TEST (takeKnightWhite)
 
     ck_assert(listCompare(historyList, correctList));
 
+    clearList(historyList);
+    free(historyList);
+
+    clearList(correctList);
+    free(correctList);
 }
 END_TEST
 
@@ -315,6 +346,11 @@ START_TEST (moveKnightBlack)
 
     ck_assert(listCompare(historyList, correctList));
 
+    clearList(historyList);
+    free(historyList);
+
+    clearList(correctList);
+    free(correctList);
 }
 END_TEST
 
@@ -356,6 +392,11 @@ START_TEST (takeKnightBlack)
 
     ck_assert(listCompare(historyList, correctList));
 
+    clearList(historyList);
+    free(historyList);
+
+    clearList(correctList);
+    free(correctList);
 }
 END_TEST
 
@@ -397,7 +438,11 @@ START_TEST (moveBishopWhite)
 
     ck_assert(listCompare(historyList, correctList));
 
+    clearList(historyList);
+    free(historyList);
 
+    clearList(correctList);
+    free(correctList);
 
 }
 END_TEST
@@ -441,7 +486,11 @@ START_TEST (takeBishopWhite)
 
     ck_assert(listCompare(historyList, correctList));
 
+    clearList(historyList);
+    free(historyList);
 
+    clearList(correctList);
+    free(correctList);
 
 }
 END_TEST
@@ -484,7 +533,11 @@ START_TEST (moveBishopBlack)
 
     ck_assert(listCompare(historyList, correctList));
 
+    clearList(historyList);
+    free(historyList);
 
+    clearList(correctList);
+    free(correctList);
 
 }
 END_TEST
@@ -528,7 +581,11 @@ START_TEST (takeBishopBlack)
 
     ck_assert(listCompare(historyList, correctList));
 
+    clearList(historyList);
+    free(historyList);
 
+    clearList(correctList);
+    free(correctList);
 
 }
 END_TEST
@@ -571,7 +628,11 @@ START_TEST (moveRookWhite)
 
     ck_assert(listCompare(historyList, correctList));
 
+    clearList(historyList);
+    free(historyList);
 
+    clearList(correctList);
+    free(correctList);
 
 }
 END_TEST
@@ -614,7 +675,11 @@ START_TEST (takeRookWhite)
 
     ck_assert(listCompare(historyList, correctList));
 
+    clearList(historyList);
+    free(historyList);
 
+    clearList(correctList);
+    free(correctList);
 
 }
 END_TEST
@@ -657,7 +722,11 @@ START_TEST (moveRookBlack)
 
     ck_assert(listCompare(historyList, correctList));
 
+    clearList(historyList);
+    free(historyList);
 
+    clearList(correctList);
+    free(correctList);
 
 }
 END_TEST
@@ -701,7 +770,11 @@ START_TEST (takeRookBlack)
 
     ck_assert(listCompare(historyList, correctList));
 
+    clearList(historyList);
+    free(historyList);
 
+    clearList(correctList);
+    free(correctList);
 
 }
 END_TEST
@@ -743,7 +816,11 @@ START_TEST (moveQueenWhite)
 
     ck_assert(listCompare(historyList, correctList));
 
+    clearList(historyList);
+    free(historyList);
 
+    clearList(correctList);
+    free(correctList);
 
 }
 END_TEST
@@ -786,7 +863,11 @@ START_TEST (takeQueenWhite)
 
     ck_assert(listCompare(historyList, correctList));
 
+    clearList(historyList);
+    free(historyList);
 
+    clearList(correctList);
+    free(correctList);
 
 }
 END_TEST
@@ -829,6 +910,12 @@ START_TEST (moveQueenBlack)
 
     ck_assert(listCompare(historyList, correctList));
 
+    clearList(historyList);
+    free(historyList);
+
+    clearList(correctList);
+    free(correctList);
+
 }
 END_TEST
 
@@ -870,6 +957,12 @@ START_TEST (takeQueenBlack)
 
     ck_assert(listCompare(historyList, correctList));
 
+    clearList(historyList);
+    free(historyList);
+
+    clearList(correctList);
+    free(correctList);
+
 }
 END_TEST
 
@@ -908,6 +1001,12 @@ START_TEST (moveKingWhite)
     add(correctList, "1 4 5 K moves 4 4");
 
     ck_assert(listCompare(historyList, correctList));
+
+    clearList(historyList);
+    free(historyList);
+
+    clearList(correctList);
+    free(correctList);
 
 }
 END_TEST
@@ -949,6 +1048,12 @@ START_TEST (takeKingWhite)
 
     ck_assert(listCompare(historyList, correctList));
 
+    clearList(historyList);
+    free(historyList);
+
+    clearList(correctList);
+    free(correctList);
+
 }
 END_TEST
 
@@ -988,6 +1093,12 @@ START_TEST (moveKingBlack)
     add(correctList, "0 4 2 k moves 4 3");
 
     ck_assert(listCompare(historyList, correctList));
+
+    clearList(historyList);
+    free(historyList);
+
+    clearList(correctList);
+    free(correctList);
 
 }
 END_TEST
@@ -1029,6 +1140,12 @@ START_TEST (takeKingBlack)
 
     ck_assert(listCompare(historyList, correctList));
 
+    clearList(historyList);
+    free(historyList);
+
+    clearList(correctList);
+    free(correctList);
+
 }
 END_TEST
 
@@ -1064,6 +1181,10 @@ START_TEST (notTakeOwnPieceWhite)
       ck_assert(0);
     }
 
+    clearList(historyList);
+    free(historyList);
+
+
 }
 END_TEST
 
@@ -1098,6 +1219,10 @@ START_TEST (notTakeOwnPieceBlack)
     if(*historyList != NULL){
       ck_assert(0);
     }
+
+    clearList(historyList);
+    free(historyList);
+
 
 }
 END_TEST
@@ -1139,6 +1264,12 @@ START_TEST (inCheckMoveOutCheckWhite)
 
     ck_assert(listCompare(historyList, correctList));
 
+    clearList(historyList);
+    free(historyList);
+
+    clearList(correctList);
+    free(correctList);
+
 }
 END_TEST
 
@@ -1179,6 +1310,12 @@ START_TEST (inCheckMoveOutCheckBlack)
 
     ck_assert(listCompare(historyList, correctList));
 
+    clearList(historyList);
+    free(historyList);
+
+    clearList(correctList);
+    free(correctList);
+
 }
 END_TEST
 
@@ -1215,6 +1352,9 @@ START_TEST (inCheckStillInCheckWhite)
     }
 
     ck_assert(!check);
+
+    clearList(historyList);
+    free(historyList);
 
 }
 END_TEST
@@ -1253,6 +1393,9 @@ START_TEST (inCheckStillInCheckBlack)
 
     ck_assert(!check);
 
+    clearList(historyList);
+    free(historyList);
+
 }
 END_TEST
 
@@ -1290,6 +1433,9 @@ START_TEST (notInCheckMoveInCheckWhite)
 
     ck_assert(!check);
 
+    clearList(historyList);
+    free(historyList);
+
 }
 END_TEST
 
@@ -1326,6 +1472,9 @@ START_TEST (notInCheckMoveInCheckBlack)
     }
 
     ck_assert(!check);
+
+    clearList(historyList);
+    free(historyList);
 
 }
 END_TEST
@@ -1366,6 +1515,12 @@ START_TEST (kingInCheckMoveOutCheckWhite)
 
     ck_assert(listCompare(historyList, correctList));
 
+    clearList(historyList);
+    free(historyList);
+
+    clearList(correctList);
+    free(correctList);
+
 }
 END_TEST
 
@@ -1405,6 +1560,12 @@ START_TEST (kingInCheckMoveOutCheckBlack)
 
     ck_assert(listCompare(historyList, correctList));
 
+    clearList(historyList);
+    free(historyList);
+
+    clearList(correctList);
+    free(correctList);
+
 }
 END_TEST
 
@@ -1440,6 +1601,10 @@ START_TEST (kingInCheckStillInCheckWhite)
     }
 
     ck_assert(!check);
+
+    clearList(historyList);
+    free(historyList);
+
 
 }
 END_TEST
@@ -1479,6 +1644,10 @@ START_TEST (kingInCheckStillInCheckBlack)
 
     ck_assert(!check);
 
+    clearList(historyList);
+    free(historyList);
+
+
 }
 END_TEST
 
@@ -1517,6 +1686,9 @@ START_TEST (kingNotInCheckMoveInCheckWhite)
 
     ck_assert(!check);
 
+    clearList(historyList);
+    free(historyList);
+
 }
 END_TEST
 
@@ -1553,6 +1725,10 @@ START_TEST (kingNotInCheckMoveInCheckBlack)
     }
 
     ck_assert(!check);
+
+    clearList(historyList);
+    free(historyList);
+
 
 }
 END_TEST

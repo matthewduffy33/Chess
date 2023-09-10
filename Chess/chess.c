@@ -34,7 +34,7 @@ int main (void) {
     int turnNum;
     int* numPtr = &turnNum;
 
-    bool castlingAllowed[4]={true, true, true}; //array showing whether castling is allowed with rooks at a1, h1, a8, h8 (in that order)
+    bool castlingAllowed[4]={true, true, true, true}; //array showing whether castling is allowed with rooks at a1, h1, a8, h8 (in that order)
     bool *castlingPointer= &castlingAllowed[0];
 
     bool check=false;
@@ -47,6 +47,8 @@ int main (void) {
 
     }else{
         printf("Starting new game\n");
+        
+    
         char newChess[8][8]= {                    //sets values to defaults for a new game
             {'r','n','b','q','k','b','n','r'},
             {'p','p','p','p','p','p','p','p'},
@@ -58,6 +60,7 @@ int main (void) {
 		    {'R','N','B','Q','K','B','N','R'}};
 
         board= &newChess[0][0];
+        
 
         whiteTurn=0;
         turnNum=0;
@@ -71,7 +74,6 @@ int main (void) {
         *(castlingAllowed+2)=true;
         *(castlingAllowed+3)=true;
 
-
     }
 
     char input[12];      // variables for the game loop
@@ -84,7 +86,6 @@ int main (void) {
     bool quitConfirm;
     char quittingInput[4];
 
-
     while (stop==0){   //loop for the whole game
 		whiteTurn = !whiteTurn;   //flips the turn
 
@@ -94,6 +95,12 @@ int main (void) {
 
         if(quitting){          //if the other player asks to quit the game the current player chooses if they also want to quit
             quitConfirm=0;
+
+            if(whiteTurn){
+                printf("\n\n\n\n\n  -----------White Turn-----------\n\n");   // header for top of turn
+            }else{
+                printf("\n\n\n\n\n  -----------Black Turn-----------\n\n");
+            }
 
             while(!quitConfirm){
                 printf("\nOther Player Wants To Quit! Do You Want To Quit? (YES/NO)\n");
@@ -117,6 +124,11 @@ int main (void) {
                     printf("\nNot Qutting - Continuing Game\n");
                     quitConfirm=1;
                     quitting=0;
+
+                    whiteTurn = !whiteTurn;
+                    if(!whiteTurn){
+                        turnNum--;
+                    }
 
                 }else{
                     printf("\nNot an option!\n");
@@ -240,6 +252,9 @@ int main (void) {
 	}
     printf("\nExiting"); //exits the game if game is done
 	
+    clearList(historyList);
+    free(historyList);
+
     return 0;
 }   
 
@@ -477,7 +492,8 @@ void viewPiece(char *board, bool turn, bool *castlingPointer, bool *checkptr){  
     List possibleList = malloc(sizeof(List));   //list of potential moves
   	*possibleList = NULL;
 
-    getMoves(board, turn, piece, posX, posY, possibleList, checkptr);
+    getMoves(board, turn, piece, posX, posY, possibleList, checkptr);  //gets moves that can be made
+    getCastling(board, turn, piece, posX, posY, possibleList, checkptr, castlingPointer);  //gets moves that can be made through castling
 
     printList(possibleList);   //print the list of potential moves
 
@@ -500,7 +516,7 @@ void viewPiece(char *board, bool turn, bool *castlingPointer, bool *checkptr){  
     }
 
     clearList(possibleList);   //clear the list
-
+    free(possibleList);
 }
 
 
@@ -513,15 +529,15 @@ bool castle(char *board, bool turn, bool* castlePointer, List historyList){
             aCastle=true;
         }
         
-        if(*castlePointer+1 && castleCheck(board, turn, 7, 4, 7)){
+        if(*(castlePointer+1) && castleCheck(board, turn, 7, 4, 7)){
             hCastle=true;
         }
     }else{
-        if(*castlePointer+2 && castleCheck(board, turn, 0, 4, 0)){
+        if(*(castlePointer+2) && castleCheck(board, turn, 0, 4, 0)){
             aCastle=true;
         }
         
-        if(*castlePointer+3 && castleCheck(board, turn, 7, 4, 0)){
+        if(*(castlePointer+3) && castleCheck(board, turn, 7, 4, 0)){
             hCastle=true;
         }
     }
@@ -727,7 +743,7 @@ void getHistory(char *board, List historyList, int num, int turnNum, bool currTu
 
         if(i != num){
             printf("\nError with history\n");
-           return;
+            return;
         }
 
         printf("\n\n\n");
@@ -745,8 +761,10 @@ void getHistory(char *board, List historyList, int num, int turnNum, bool currTu
 
         if(turn == 1){
             printf("\nWhite\n");
+
         }else{
             printf("\nBlack\n");
+
         }
 
         printf("%c%d %c ", (originalX +'A'), ((7-originalY) + 1 ), piece);   //displays the history value
@@ -804,6 +822,7 @@ void getHistory(char *board, List historyList, int num, int turnNum, bool currTu
         printf("\n");
 
         free(history);
+        free(type);
 
     }else{
         printf("\nNo history! \n");
@@ -891,6 +910,7 @@ void histList(char *board, List historyList, int turnNum, bool currTurn){  // ge
 
 
         free(history);
+        free(type);
         printf("\n\n\n");
 
     }else{

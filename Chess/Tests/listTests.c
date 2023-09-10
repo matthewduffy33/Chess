@@ -33,6 +33,7 @@ START_TEST (listNotEmpty)
     ck_assert(!isEmpty(linkedList));
 
     clearList(linkedList);
+    free(linkedList);
    
 }
 END_TEST
@@ -55,6 +56,7 @@ START_TEST (listClear)
     clearList(linkedList);
 
     ck_assert(isEmpty(linkedList));
+    free(linkedList);
    
 }
 END_TEST
@@ -77,6 +79,8 @@ START_TEST (listClearMultiple)
     clearList(linkedList);
 
     ck_assert(isEmpty(linkedList));
+
+    free(linkedList);
    
 }
 END_TEST
@@ -109,6 +113,7 @@ START_TEST (listAddOne)
 
 
     clearList(linkedList);
+    free(linkedList);
 
    
 }
@@ -149,6 +154,7 @@ START_TEST (listAddMultiple)
 
 
     clearList(linkedList);
+    free(linkedList);
 
    
 }
@@ -180,6 +186,7 @@ START_TEST (listAddOneFront)
 
 
     clearList(linkedList);
+    free(linkedList);
 
    
 }
@@ -218,7 +225,7 @@ START_TEST (listAddMultipleFront)
 
 
     clearList(linkedList);
-
+    free(linkedList);
    
 }
 END_TEST
@@ -255,7 +262,7 @@ START_TEST (listRemoveAfterZero)
 
 
     clearList(linkedList);
-
+    free(linkedList);
    
 }
 END_TEST
@@ -297,7 +304,7 @@ START_TEST (listRemoveAfterOne)
 
 
     clearList(linkedList);
-
+    free(linkedList);
    
 }
 END_TEST
@@ -343,6 +350,13 @@ START_TEST (listRemoveAfterMultiple)
     }else{
       ck_assert(0);
     }
+
+    clearList(linkedList);
+    free(linkedList);
+
+    clearList(correctList);
+    free(correctList);
+
 }
 END_TEST
 
@@ -378,6 +392,9 @@ START_TEST (listGridNormal)
     ck_assert(*(board+(8*7)+1) == 'X');
     ck_assert(*(board+(8*4)+4) == 'X');
 
+    clearList(linkedList);
+    free(linkedList);
+
 }
 END_TEST
 
@@ -412,6 +429,9 @@ START_TEST (listGridCorners)
     ck_assert(*(board+(8*7)) == 'X');
     ck_assert(*(board+7) == 'X');
     ck_assert(*(board+(8*7)+7) == 'X');
+
+    clearList(linkedList);
+    free(linkedList);
 
 }
 END_TEST

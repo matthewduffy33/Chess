@@ -574,7 +574,291 @@ START_TEST (moveKingCheckBlack)
 END_TEST
 
 
+START_TEST (moveKingCastleBothWhite)
+{
+    char chess[8][8] = {
+            {' ',' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' ',' '},
+            {'R',' ',' ',' ','K',' ',' ','R'}};
+					
+	  char *board= &chess[0][0];	
 
+    List moveList = malloc(sizeof(List));
+    *moveList=NULL;
+    bool castlingAllowed[4]={true, true, true, true}; 
+    bool *castlingPointer= &castlingAllowed[0];
+
+    getCastling(board, 1, 'K', 4, 7, moveList, 0, castlingPointer);
+
+    List correctList = malloc(sizeof(List));
+    *correctList=NULL;
+
+    add(correctList, "27");
+    add(correctList, "67");
+
+    ck_assert(listCompare(moveList, correctList));
+
+
+}
+END_TEST
+
+
+
+START_TEST (moveKingCastleBothBlack)
+{
+    char chess[8][8] = {
+            {'r',' ',' ',' ','k',' ',' ','r'},
+            {' ',' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' ',' '}};
+					
+	  char *board= &chess[0][0];	
+
+    List moveList = malloc(sizeof(List));
+    *moveList=NULL;
+    bool castlingAllowed[4]={true, true, true, true}; 
+    bool *castlingPointer= &castlingAllowed[0];
+
+    getCastling(board, 0, 'k', 4, 0, moveList, 0, castlingPointer);
+
+    List correctList = malloc(sizeof(List));
+    *correctList=NULL;
+
+    add(correctList, "20");
+    add(correctList, "60");
+
+    ck_assert(listCompare(moveList, correctList));
+
+
+}
+END_TEST
+
+
+START_TEST (moveKingCastleAWhite)
+{
+    char chess[8][8] = {
+            {' ',' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' ',' '},
+            {'R',' ',' ',' ','K',' ',' ','R'}};
+					
+	  char *board= &chess[0][0];	
+
+    List moveList = malloc(sizeof(List));
+    *moveList=NULL;
+
+    bool castlingAllowed[4]={true, false, true, true}; 
+    bool *castlingPointer= &castlingAllowed[0];
+
+    getCastling(board, 1, 'K', 4, 7, moveList, 0, castlingPointer);
+
+    List correctList = malloc(sizeof(List));
+    *correctList=NULL;
+
+    add(correctList, "27");
+
+    ck_assert(listCompare(moveList, correctList));
+
+    clearList(moveList);
+    free(moveList);
+
+    clearList(correctList);
+    free(correctList);
+}
+END_TEST
+
+
+
+START_TEST (moveKingCastleABlack)
+{
+    char chess[8][8] = {
+            {'r',' ',' ',' ','k',' ',' ','r'},
+            {' ',' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' ',' '}};
+					
+	  char *board= &chess[0][0];	
+
+    List moveList = malloc(sizeof(List));
+    *moveList=NULL;
+
+    bool castlingAllowed[4]={true, true, true, false}; 
+    bool *castlingPointer= &castlingAllowed[0];
+
+    getCastling(board, 0, 'k', 4, 0, moveList, 0, castlingPointer);
+
+    List correctList = malloc(sizeof(List));
+    *correctList=NULL;
+
+    add(correctList, "20");
+
+    ck_assert(listCompare(moveList, correctList));
+
+    clearList(moveList);
+    free(moveList);
+
+    clearList(correctList);
+    free(correctList);
+
+}
+END_TEST
+
+
+START_TEST (moveKingCastleHWhite)
+{
+    char chess[8][8] = {
+            {' ',' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' ',' '},
+            {'R',' ',' ',' ','K',' ',' ','R'}};
+					
+	  char *board= &chess[0][0];	
+
+    List moveList = malloc(sizeof(List));
+    *moveList=NULL;
+    bool castlingAllowed[4]={false, true, true, true}; 
+    bool *castlingPointer= &castlingAllowed[0];
+
+    getCastling(board, 1, 'K', 4, 7, moveList, 0, castlingPointer);
+
+    List correctList = malloc(sizeof(List));
+    *correctList=NULL;
+
+    add(correctList, "67");
+
+    ck_assert(listCompare(moveList, correctList));
+
+    clearList(moveList);
+    free(moveList);
+
+    clearList(correctList);
+    free(correctList);
+
+}
+END_TEST
+
+
+
+START_TEST (moveKingCastleHBlack)
+{
+    char chess[8][8] = {
+            {'r',' ',' ',' ','k',' ',' ','r'},
+            {' ',' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' ',' '}};
+					
+	  char *board= &chess[0][0];	
+
+    List moveList = malloc(sizeof(List));
+    *moveList=NULL;
+    bool castlingAllowed[4]={true, true, false, true}; 
+    bool *castlingPointer= &castlingAllowed[0];
+
+    getCastling(board, 0, 'k', 4, 0, moveList, 0, castlingPointer);
+
+    List correctList = malloc(sizeof(List));
+    *correctList=NULL;
+
+    add(correctList, "60");
+
+    ck_assert(listCompare(moveList, correctList));
+
+    clearList(moveList);
+    free(moveList);
+
+    clearList(correctList);
+    free(correctList);
+
+}
+END_TEST
+
+
+START_TEST (moveKingCastleNoneWhite)
+{
+    char chess[8][8] = {
+            {' ',' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' ',' '},
+            {'R',' ',' ',' ','K',' ',' ','R'}};
+					
+	  char *board= &chess[0][0];	
+
+    List moveList = malloc(sizeof(List));
+    *moveList=NULL;
+
+    bool castlingAllowed[4]={false, false, true, true}; 
+    bool *castlingPointer= &castlingAllowed[0];
+
+    getCastling(board, 1, 'K', 4, 7, moveList, 0, castlingPointer);
+
+    ck_assert(isEmpty(moveList));
+
+    clearList(moveList);
+    free(moveList);
+
+}
+END_TEST
+
+
+
+START_TEST (moveKingCastleNoneBlack)
+{
+    char chess[8][8] = {
+            {'r',' ',' ',' ','k',' ',' ','r'},
+            {' ',' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' ',' '}};
+					
+	  char *board= &chess[0][0];	
+
+    List moveList = malloc(sizeof(List));
+    *moveList=NULL;
+
+    bool castlingAllowed[4]={true, true, false, false}; 
+    bool *castlingPointer= &castlingAllowed[0];
+
+    getCastling(board, 0, 'k', 4, 0, moveList, 0, castlingPointer);
+
+    ck_assert(isEmpty(moveList));
+
+    clearList(moveList);
+    free(moveList);
+
+}
+END_TEST
 
 
 START_TEST (moveKnightWhite)
@@ -613,6 +897,11 @@ START_TEST (moveKnightWhite)
 
     ck_assert(listCompare(moveList, correctList));
 
+    clearList(moveList);
+    free(moveList);
+
+    clearList(correctList);
+    free(correctList);
 
 }
 END_TEST
@@ -654,6 +943,11 @@ START_TEST (moveKnightBlack)
 
     ck_assert(listCompare(moveList, correctList));
 
+    clearList(moveList);
+    free(moveList);
+
+    clearList(correctList);
+    free(correctList);
 
 }
 END_TEST
@@ -697,6 +991,11 @@ START_TEST (takeKnightWhite)
 
     ck_assert(listCompare(moveList, correctList));
 
+    clearList(moveList);
+    free(moveList);
+
+    clearList(correctList);
+    free(correctList);
 
 }
 END_TEST
@@ -738,6 +1037,11 @@ START_TEST (takeKnightBlack)
 
     ck_assert(listCompare(moveList, correctList));
 
+    clearList(moveList);
+    free(moveList);
+
+    clearList(correctList);
+    free(correctList);
 
 }
 END_TEST
@@ -776,6 +1080,11 @@ START_TEST (moveBishopWhite)
 
     ck_assert(listCompare(moveList, correctList));
 
+    clearList(moveList);
+    free(moveList);
+
+    clearList(correctList);
+    free(correctList);
 
 }
 END_TEST
@@ -812,6 +1121,11 @@ START_TEST (moveBishopBlack)
 
     ck_assert(listCompare(moveList, correctList));
 
+    clearList(moveList);
+    free(moveList);
+
+    clearList(correctList);
+    free(correctList);
 
 }
 END_TEST
@@ -856,6 +1170,11 @@ START_TEST (takeBishopWhite)
 
     ck_assert(listCompare(moveList, correctList));
 
+    clearList(moveList);
+    free(moveList);
+
+    clearList(correctList);
+    free(correctList);
 
 }
 END_TEST
@@ -898,6 +1217,11 @@ START_TEST (takeBishopBlack)
 
     ck_assert(listCompare(moveList, correctList));
 
+    clearList(moveList);
+    free(moveList);
+
+    clearList(correctList);
+    free(correctList);
 
 }
 END_TEST
@@ -937,9 +1261,13 @@ START_TEST (moveRookWhite)
 
     add(correctList, "32");//right
 
-    
-
     ck_assert(listCompare(moveList, correctList));
+
+    clearList(moveList);
+    free(moveList);
+
+    clearList(correctList);
+    free(correctList);
 
 }
 END_TEST
@@ -977,9 +1305,13 @@ START_TEST (moveRookBlack)
 
     add(correctList, "32");//right
 
-    
-
     ck_assert(listCompare(moveList, correctList));
+
+    clearList(moveList);
+    free(moveList);
+
+    clearList(correctList);
+    free(correctList);
 
 }
 END_TEST
@@ -1023,9 +1355,13 @@ START_TEST (takeRookWhite)
     add(correctList, "32");//right
     add(correctList, "31");
 
-    
-
     ck_assert(listCompare(moveList, correctList));
+
+    clearList(moveList);
+    free(moveList);
+
+    clearList(correctList);
+    free(correctList);
 
 }
 END_TEST
@@ -1067,9 +1403,13 @@ START_TEST (takeRookBlack)
     add(correctList, "32");//right
     add(correctList, "31");
 
-    
-
     ck_assert(listCompare(moveList, correctList));
+
+    clearList(moveList);
+    free(moveList);
+
+    clearList(correctList);
+    free(correctList);
 
 }
 END_TEST
@@ -1101,6 +1441,9 @@ START_TEST (movesInCheckNoMovesWhite)
 
     isEmpty(moveList);
 
+    clearList(moveList);
+    free(moveList);
+
 }
 END_TEST
 
@@ -1127,6 +1470,10 @@ START_TEST (movesInCheckNoMovesBlack)
     movesInCheck(board, 0, 'P', 6, 1, moveList);
 
     isEmpty(moveList);
+
+    clearList(moveList);
+    free(moveList);
+
 
 }
 END_TEST
@@ -1185,6 +1532,10 @@ START_TEST (movesInCheckOneMovesWhite)
       ck_assert(0);
     }
 
+    clearList(moveList);
+    free(moveList);
+
+
 }
 END_TEST
 
@@ -1237,6 +1588,10 @@ START_TEST (movesInCheckOneMovesBlack)
     }else{
       ck_assert(0);
     }
+
+    clearList(moveList);
+    free(moveList);
+
 
 }
 END_TEST
@@ -1305,10 +1660,13 @@ START_TEST (movesInCheckMultiMovesWhite)
     add(correctList, "33");
     add(correctList, "35");
 
-
-
     ck_assert(listCompare(moveList, correctList));
 
+    clearList(moveList);
+    free(moveList);
+
+    clearList(correctList);
+    free(correctList);
 
 }
 END_TEST
@@ -1378,6 +1736,12 @@ START_TEST (movesInCheckMultiMovesBlack)
 
     ck_assert(listCompare(moveList, correctList));
 
+    clearList(moveList);
+    free(moveList);
+
+    clearList(correctList);
+    free(correctList);
+
 
 }
 END_TEST
@@ -1411,6 +1775,18 @@ Suite * view_suite(void){
 
   tcase_add_test(tc_core, moveKingCheckWhite);
   tcase_add_test(tc_core, moveKingCheckBlack);
+
+  tcase_add_test(tc_core, moveKingCastleBothWhite);
+  tcase_add_test(tc_core, moveKingCastleBothBlack);
+
+  tcase_add_test(tc_core, moveKingCastleAWhite);
+  tcase_add_test(tc_core, moveKingCastleABlack);
+
+  tcase_add_test(tc_core, moveKingCastleHWhite);
+  tcase_add_test(tc_core, moveKingCastleHBlack);
+
+  tcase_add_test(tc_core, moveKingCastleNoneWhite);
+  tcase_add_test(tc_core, moveKingCastleNoneBlack);
 
   tcase_add_test(tc_core, moveKnightWhite);
   tcase_add_test(tc_core, moveKnightBlack);

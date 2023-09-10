@@ -7,6 +7,7 @@
 #include "viewMoves.h"
 #include "linkedList.h"
 #include "checkChecker.h"
+#include "makeMoves.h"
 
 
 
@@ -41,15 +42,30 @@ void getMoves(char *board, bool turn, char piece, int posX, int posY, List possi
 }
 
 
+void getCastling(char *board, bool turn, char piece, int posX, int posY, List possibleList, bool check, bool* castlePointer){
+    char upperPiece=toupper(piece);
+
+    if(!check){
+        if(upperPiece == 'R'){
+            rookCastleMoves(board, turn, posX, posY, possibleList, castlePointer);
+
+        }else if(upperPiece == 'K'){
+            kingCastleMoves(board, turn, possibleList, castlePointer);
+
+        }
+    }
+    
+}
 
 void pawnMoves(char *board, bool turn, int posX, int posY, List possibleList){
-    char piece;
-    char *pos = malloc(sizeof(char)*3);
-    memset(pos, '\0', 3);
     
     if(selfCheckChecker(board, turn, posX, posY)){  //checks if moving the piece puts the king in check
         return;
     }
+
+    char piece;
+    char *pos = malloc(sizeof(char)*3);
+    memset(pos, '\0', 3);
 
     if(turn && posY>0){
         piece=*(board+(8*(posY-1))+posX-1);
@@ -150,12 +166,13 @@ void pawnMoves(char *board, bool turn, int posX, int posY, List possibleList){
 
 
 void knightMoves(char *board, bool turn, int posX, int posY, List possibleList){
-    char *pos = malloc(sizeof(char)*3);
-    memset(pos, '\0', 3);
 
     if(selfCheckChecker(board, turn, posX, posY)){   //checks if moving the piece puts the king in check
         return;
     }
+
+    char *pos = malloc(sizeof(char)*3);
+    memset(pos, '\0', 3);
 
     for(int i=-2; i<=2; i=i+4){
         for(int j=-1; j<=1; j=j+2){                                //mathematically loops through the possible moves knights make
@@ -192,13 +209,14 @@ void knightMoves(char *board, bool turn, int posX, int posY, List possibleList){
 }
 
 void bishopMoves(char *board, bool turn, int posX, int posY, List possibleList){
-    char *pos = malloc(sizeof(char)*3);
-    memset(pos, '\0', 3);
-    int j=posY+1;
 
     if(selfCheckChecker(board, turn, posX, posY)){   //checks if moving the piece puts the king in check
         return;
     }
+
+    char *pos = malloc(sizeof(char)*3);
+    memset(pos, '\0', 3);
+    int j=posY+1;
 
     for(int i=posX+1; i <8; i++){        //loops through the bottom right line until another piece is encountered
         char piece = *(board+(8*j)+i);
@@ -295,12 +313,13 @@ void bishopMoves(char *board, bool turn, int posX, int posY, List possibleList){
 
 
 void rookMoves(char *board, bool turn, int posX, int posY, List possibleList){
-    char *pos = malloc(sizeof(char)*3);
-    memset(pos, '\0', 3);
 
     if(selfCheckChecker(board, turn, posX, posY)){   //checks if moving the piece puts the king in check
         return;
     }
+
+    char *pos = malloc(sizeof(char)*3);
+    memset(pos, '\0', 3);
 
     for(int i=posX+1; i <8; i++){            //loops through the right line until another piece is encountered
         char piece = *(board+(8*posY)+i);
@@ -380,6 +399,7 @@ void rookMoves(char *board, bool turn, int posX, int posY, List possibleList){
         
     }
 
+
     free(pos);
 
 
@@ -422,6 +442,69 @@ void kingMoves(char *board, bool turn, int posX, int posY, List possibleList){
 
     free(pos);
 }
+
+
+void rookCastleMoves(char *board, bool turn, int posX, int posY, List possibleList, bool* castlePointer){
+    //checking if castling is possible
+    if(turn){
+
+        if(posX == 0 && posY == 7){
+            if(*castlePointer && castleCheck(board, turn, 0, 4, 7)){
+                printf("\nCastling is possible!");
+            }
+        }else if(posX == 7 && posY == 7){
+            if(*castlePointer+1 && castleCheck(board, turn, 7, 4, 7)){
+                printf("\nCastling is possible!");
+            }
+        }     
+        
+    }else{
+        if(posX == 0 && posY == 0){
+            if(*castlePointer+2 && castleCheck(board, turn, 0, 4, 0)){
+                printf("\nCastling is possible!");
+            }
+
+        } else if(posX == 7 && posY == 0){
+            if(*castlePointer+3 && castleCheck(board, turn, 7, 4, 0)){
+                printf("\nCastling is possible!");
+            }
+        }
+        
+        
+    }
+
+}
+
+
+void kingCastleMoves(char *board, bool turn, List possibleList, bool* castlePointer){
+    //checking if castling is possible
+    if(turn){      
+        if(*castlePointer && castleCheck(board, turn, 0, 4, 7)){
+            add(possibleList, "27");
+            printf("\nCastling in Column A is possible!");
+        }
+        
+        if(*(castlePointer+1) && castleCheck(board, turn, 7, 4, 7)){
+            add(possibleList, "67");
+            printf("\nCastling in Column H is possible!");
+        }
+    }else{
+        if(*(castlePointer+2) && castleCheck(board, turn, 0, 4, 0)){
+            add(possibleList, "20");
+            printf("\nCastling in Column A is possible!");
+        }
+        
+        if(*(castlePointer+3) && castleCheck(board, turn, 7, 4, 0)){
+            add(possibleList, "60");
+            printf("\nCastling in Column H is possible!");
+        }
+    }
+
+
+}
+
+
+
 
 
 void movesInCheck(char *board, bool turn, char piece, int posX, int posY, List possibleList){
@@ -480,6 +563,8 @@ void movesInCheck(char *board, bool turn, char piece, int posX, int posY, List p
         
     }
   }
+
+  free(pos);
 
     
 }

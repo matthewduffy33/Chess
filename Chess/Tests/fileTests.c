@@ -139,6 +139,8 @@ START_TEST (saveBoardTestNormal)
     ck_assert(0);
   }
 
+  free(line);
+
 
 }
 END_TEST
@@ -219,6 +221,8 @@ START_TEST (saveBoardTestExtreme)
   if(fgets(line, 51, fp)!=NULL){
     ck_assert(0);
   }
+
+  free(line);
 
 }
 END_TEST
@@ -416,7 +420,10 @@ START_TEST (saveHistoryNone)
     ck_assert(0);
   }
 
+  clearList(historyList);
+  free(historyList);
 
+  free(line);
 
 }
 END_TEST
@@ -450,6 +457,10 @@ START_TEST (saveHistoryOne)
     ck_assert(0);
   }
 
+  clearList(historyList);
+  free(historyList);
+
+  free(line);
 
 
 }
@@ -500,7 +511,10 @@ START_TEST (saveHistoryNormal)
     ck_assert(0);
   }
 
+  clearList(historyList);
+  free(historyList);
 
+  free(line);
 
 }
 END_TEST
@@ -519,7 +533,8 @@ START_TEST (loadHistoryTestNone)
     ck_assert(0);
   }
 
-
+  clearList(loadedList);
+  free(loadedList);
 
 }
 END_TEST
@@ -541,7 +556,13 @@ START_TEST (loadHistoryTestOne)
 
   ck_assert(listCompare(loadedList, historyList));
 
+  clearList(historyList);
+  free(historyList);
 
+  clearList(loadedList);
+  free(loadedList);
+
+  
 }
 END_TEST
 
@@ -569,7 +590,11 @@ START_TEST (loadHistoryTestNormal)
 
   ck_assert(listCompare(historyList, loadedList));
 
+  clearList(historyList);
+  free(historyList);
 
+  clearList(loadedList);
+  free(loadedList);
 
 }
 END_TEST
@@ -593,7 +618,11 @@ START_TEST (loadHistoryTestExceptionNotTurn)
     ck_assert(0);
   }
 
+  clearList(historyList);
+  free(historyList);
 
+  clearList(loadedList);
+  free(loadedList);
 
 }
 END_TEST
@@ -616,7 +645,11 @@ START_TEST (loadHistoryTestExceptionNotInRange)
     ck_assert(0);
   }
 
+  clearList(historyList);
+  free(historyList);
 
+  clearList(loadedList);
+  free(loadedList);
 
 }
 END_TEST
@@ -639,7 +672,11 @@ START_TEST (loadHistoryTestExceptionNotPiece)
     ck_assert(0);
   }
 
+  clearList(historyList);
+  free(historyList);
 
+  clearList(loadedList);
+  free(loadedList);
 
 }
 END_TEST
@@ -662,7 +699,11 @@ START_TEST (loadHistoryTestExceptionNotType)
     ck_assert(0);
   }
 
+  clearList(historyList);
+  free(historyList);
 
+  clearList(loadedList);
+  free(loadedList);
 
 }
 END_TEST
@@ -685,7 +726,11 @@ START_TEST (loadHistoryTestExceptionNoTakenPiece)
     ck_assert(0);
   }
 
+  clearList(historyList);
+  free(historyList);
 
+  clearList(loadedList);
+  free(loadedList);
 
 }
 END_TEST

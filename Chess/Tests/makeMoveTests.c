@@ -887,6 +887,8 @@ START_TEST (doCastleLeftWhite)
   ck_assert(!*(castlingPointer));
   ck_assert(!*(castlingPointer + 1));
 
+  clearList(historyList);
+  free(historyList);
 
 }
 END_TEST
@@ -923,6 +925,9 @@ START_TEST (doCastleLeftBlack)
   ck_assert(!*(castlingPointer + 2));
   ck_assert(!*(castlingPointer + 3));
 
+  clearList(historyList);
+  free(historyList);
+
 }
 END_TEST
 
@@ -958,6 +963,8 @@ START_TEST (doCastleRightWhite)
   ck_assert(!*(castlingPointer));
   ck_assert(!*(castlingPointer + 1));
 
+  clearList(historyList);
+  free(historyList);
 }
 END_TEST
 
@@ -992,6 +999,8 @@ START_TEST (doCastleRightBlack)
   ck_assert(!*(castlingPointer + 2));
   ck_assert(!*(castlingPointer + 3));
 
+  clearList(historyList);
+  free(historyList);
 }
 END_TEST
 
