@@ -7,6 +7,7 @@
 #include "viewMoves.h"
 #include "linkedList.h"
 #include "checkChecker.h"
+#include "makeMoves.h"
 
 
 
@@ -41,6 +42,20 @@ void getMoves(char *board, bool turn, char piece, int posX, int posY, List possi
 }
 
 
+void getCastling(char *board, bool turn, char piece, int posX, int posY, List possibleList, bool check, bool* castlePointer){
+    char upperPiece=toupper(piece);
+
+    if(!check){
+        if(upperPiece == 'R'){
+            rookCastleMoves(board, turn, posX, posY, possibleList, castlePointer);
+
+        }else if(upperPiece == 'K'){
+            kingCastleMoves(board, turn, possibleList, castlePointer);
+
+        }
+    }
+    
+}
 
 void pawnMoves(char *board, bool turn, int posX, int posY, List possibleList){
     char piece;
@@ -380,6 +395,7 @@ void rookMoves(char *board, bool turn, int posX, int posY, List possibleList){
         
     }
 
+
     free(pos);
 
 
@@ -422,6 +438,69 @@ void kingMoves(char *board, bool turn, int posX, int posY, List possibleList){
 
     free(pos);
 }
+
+
+void rookCastleMoves(char *board, bool turn, int posX, int posY, List possibleList, bool* castlePointer){
+    //checking if castling is possible
+    if(turn){
+
+        if(posX == 0 && posY == 7){
+            if(*castlePointer && castleCheck(board, turn, 0, 4, 7)){
+                printf("\nCastling is possible!");
+            }
+        }else if(posX == 7 && posY == 7){
+            if(*castlePointer+1 && castleCheck(board, turn, 7, 4, 7)){
+                printf("\nCastling is possible!");
+            }
+        }     
+        
+    }else{
+        if(posX == 0 && posY == 0){
+            if(*castlePointer+2 && castleCheck(board, turn, 0, 4, 0)){
+                printf("\nCastling is possible!");
+            }
+
+        } else if(posX == 7 && posY == 0){
+            if(*castlePointer+3 && castleCheck(board, turn, 7, 4, 0)){
+                printf("\nCastling is possible!");
+            }
+        }
+        
+        
+    }
+
+}
+
+
+void kingCastleMoves(char *board, bool turn, List possibleList, bool* castlePointer){
+    //checking if castling is possible
+    if(turn){      
+        if(*castlePointer && castleCheck(board, turn, 0, 4, 7)){
+            add(possibleList, "27");
+            printf("\nCastling in Column A is possible!");
+        }
+        
+        if(*(castlePointer+1) && castleCheck(board, turn, 7, 4, 7)){
+            add(possibleList, "67");
+            printf("\nCastling in Column H is possible!");
+        }
+    }else{
+        if(*(castlePointer+2) && castleCheck(board, turn, 0, 4, 0)){
+            add(possibleList, "20");
+            printf("\nCastling in Column A is possible!");
+        }
+        
+        if(*(castlePointer+3) && castleCheck(board, turn, 7, 4, 0)){
+            add(possibleList, "60");
+            printf("\nCastling in Column H is possible!");
+        }
+    }
+
+
+}
+
+
+
 
 
 void movesInCheck(char *board, bool turn, char piece, int posX, int posY, List possibleList){

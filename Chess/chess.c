@@ -34,7 +34,7 @@ int main (void) {
     int turnNum;
     int* numPtr = &turnNum;
 
-    bool castlingAllowed[4]={true, true, true}; //array showing whether castling is allowed with rooks at a1, h1, a8, h8 (in that order)
+    bool castlingAllowed[4]={true, true, true, true}; //array showing whether castling is allowed with rooks at a1, h1, a8, h8 (in that order)
     bool *castlingPointer= &castlingAllowed[0];
 
     bool check=false;
@@ -477,7 +477,8 @@ void viewPiece(char *board, bool turn, bool *castlingPointer, bool *checkptr){  
     List possibleList = malloc(sizeof(List));   //list of potential moves
   	*possibleList = NULL;
 
-    getMoves(board, turn, piece, posX, posY, possibleList, checkptr);
+    getMoves(board, turn, piece, posX, posY, possibleList, checkptr);  //gets moves that can be made
+    getCastling(board, turn, piece, posX, posY, possibleList, checkptr, castlingPointer);  //gets moves that can be made through castling
 
     printList(possibleList);   //print the list of potential moves
 
@@ -513,15 +514,15 @@ bool castle(char *board, bool turn, bool* castlePointer, List historyList){
             aCastle=true;
         }
         
-        if(*castlePointer+1 && castleCheck(board, turn, 7, 4, 7)){
+        if(*(castlePointer+1) && castleCheck(board, turn, 7, 4, 7)){
             hCastle=true;
         }
     }else{
-        if(*castlePointer+2 && castleCheck(board, turn, 0, 4, 0)){
+        if(*(castlePointer+2) && castleCheck(board, turn, 0, 4, 0)){
             aCastle=true;
         }
         
-        if(*castlePointer+3 && castleCheck(board, turn, 7, 4, 0)){
+        if(*(castlePointer+3) && castleCheck(board, turn, 7, 4, 0)){
             hCastle=true;
         }
     }
